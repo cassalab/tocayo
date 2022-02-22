@@ -1,6 +1,8 @@
 import sqlite3 
 import pandas as pd
 import numpy as np
+import time
+import sys
 
 
 def indices(lst, element):
