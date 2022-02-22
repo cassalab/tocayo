@@ -23,24 +23,26 @@ def main():
 
 	df = df[df["lof_clas"] == "HC"].sort_values(by = ["simple_name"]).reset_index(drop = True)
 
-	totalDf = pd.DataFrame(columns = df.columns)
-
-	noneDf = df.fillna("-200")[df.fillna("-200")["gene_name"] == "-200"]
+	noneDf = df.fillna("-")[df.fillna("-")["gene_name"] == "-"]
 
 	df = df.dropna(subset = ["gene_name"])
 
+	df = df.fillna("-")
+
 	noneDf["gene_name"] = noneDf["Name"].str.split(":").str.get(0)
+	noneDf["refseq"] = "-"
 
 	df = pd.concat([df, noneDf], ignore_index = True).sort_values(by = ["simple_name"]).reset_index(drop = True)
 
 	for geneName in list(df.drop_duplicates(subset = ["gene_name"])["gene_name"]):
-		totalDf = pd.concat([totalDf, get_pvs1(df[df["gene_name"] == geneName])], ignore_index = True)
+		get_pvs1(df[df["gene_name"] == geneName])
 
 	totalDf = pd.DataFrame()
 	totalDf["proportion"] = proportion_list
 
-	totalDf.to_csv(f"/net/data/aasubs/clinvar_only/pvs1/proportions_hc.csv")
+	totalDf.to_csv(f"/net/data/aasubs/clinvar_only/pvs1/pvs1_proportions.csv")
 
 
 if __name__ == '__main__':
 	main()
+
