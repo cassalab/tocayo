@@ -1,6 +1,8 @@
 import sqlite3 
 import pandas as pd
 import numpy as np
+import time
+import sys
 
 
 def indices(lst, element):
@@ -24,9 +26,10 @@ def get_variants(geneName):
 	dbDf["simple_name"] = dbDf["chr"].map(str) + "-" + dbDf["pos"].map(str) + "-" + dbDf["ref"].map(str) + "-" + dbDf["alt"].map(str)
 
 	cvDf_gene = cvDf[cvDf["gene_name"] == geneName]
+	cvNameList = list(cvDf_gene["simple_name"])
+	cvDf_gene = cvDf_gene[cvDf_gene["simple_annot"] != "VUS"]
 	cvHalfList = list(cvDf_gene["aa_half_name"])
 	cvSubList = list(cvDf_gene["aa_sub_name"])
-	cvNameList = list(cvDf_gene["simple_name"])
 
 	cvDfFinal = pd.DataFrame(columns = cvDf_gene.columns)
 	dbDfFinal = pd.DataFrame(columns = dbColumns)
@@ -94,6 +97,6 @@ if __name__ == "__main__":
 		cvDfFull = pd.concat([cvDfFull, dfs[0]], ignore_index = True)
 		dbDfFull = pd.concat([dbDfFull, dfs[1]], ignore_index = True)
 
-	cvDfFull.to_csv("/net/data/aasubs/dbnsfp_catalog/moderate_cv_potential_entries.csv")
-	dbDfFull.to_csv("/net/data/aasubs/dbnsfp_catalog/moderate_db_potential_entries.csv")
+	cvDfFull.to_csv("/net/data/aasubs/dbnsfp_catalog/moderate_cv_potential_entries_2.csv")
+	dbDfFull.to_csv("/net/data/aasubs/dbnsfp_catalog/moderate_db_potential_entries_2.csv")
 
