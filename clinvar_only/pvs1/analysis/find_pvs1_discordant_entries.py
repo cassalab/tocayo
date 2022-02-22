@@ -4,9 +4,11 @@ import sys
 
 def get_pvs1(cvDf):
 
-	cvDfPLP = cvDf[cvDf["simple_annot"] == "P/LP"]
+	cvDfHC = cvDf[cvDf["lof_clas"] == "HC"]
 
-	if len(cvDfPLP)/len(cvDf) > 0.8:
+	cvDfPLP = cvDfHC[cvDfHC["simple_annot"] == "P/LP"]
+
+	if len(cvDfHC) > 0 and len(cvDfPLP)/len(cvDfHC) > 0.5:
 		return cvDf
 	else:
 		return pd.DataFrame()
@@ -23,11 +25,14 @@ def main():
 
 	totalDf = pd.DataFrame(columns = df.columns)
 
-	noneDf = df.fillna("-200")[df.fillna("-200")["gene_name"] == "-200"]
+	noneDf = df.fillna("-")[df.fillna("-")["gene_name"] == "-"]
 
 	df = df.dropna(subset = ["gene_name"])
 
+	df = df.fillna("-")
+
 	noneDf["gene_name"] = noneDf["Name"].str.split(":").str.get(0)
+	noneDf["refseq"] = "-"
 
 	df = pd.concat([df, noneDf], ignore_index = True).sort_values(by = ["simple_name"]).reset_index(drop = True)
 
@@ -36,8 +41,9 @@ def main():
 
 	totalDf.drop(totalDf.filter(regex="Unname"), axis=1, inplace=True)
 
-	totalDf.sort_values(by = ["aa_sub_name"]).reset_index(drop = True).to_csv(f"/net/data/aasubs/clinvar_only/pvs1/pvs1_all_matches_08.csv")
+	totalDf.sort_values(by = ["simple_name"]).reset_index(drop = True).to_csv(f"/net/data/aasubs/clinvar_only/pvs1/pvs1_all_matches_05_2.csv")
 
 
 if __name__ == '__main__':
 	main()
+	
