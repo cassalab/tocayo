@@ -40,8 +40,9 @@ def main():
 		totalDf = pd.concat([totalDf, get_pvs1(df[df["gene_name"] == geneName])], ignore_index = True)
 
 	totalDf.drop(totalDf.filter(regex="Unname"), axis=1, inplace=True)
+	totalDf = totalDf[totalDf["simple_annot"] == "VUS"].sort_values(by = ["simple_name"]).reset_index(drop = True)
 
-	totalDf.sort_values(by = ["simple_name"]).reset_index(drop = True).to_csv(f"/net/data/aasubs/clinvar_only/pvs1/pvs1_all_matches_05_2.csv")
+	totalDf.to_csv(f"/net/data/aasubs/clinvar_only/pvs1/pvs1_discordances.csv")
 
 
 if __name__ == '__main__':
