@@ -10,7 +10,7 @@ for evidence in evidenceList:
 		clas = classificationList[i]
 		clas_v2 = classificationList_v2[i]
     
-    #SpliceAI data retrieved from VEP Web Interface
+    		#SpliceAI data retrieved from VEP Web Interface
 		df = pd.read_csv(f"/Users/vineel/Desktop/{evidence}_{clas_v2}_analysis.csv")
 		df[f"{clas_v2}_simple_name"] = df[f"{clas_v2}_Chromosome"].map(str) + "-" + df[f"{clas_v2}_Start"].map(str) + "-" + df[f"{clas_v2}_AlternateAlleleVCF"].map(str)
 		df["vus_simple_name"] = df["vus_Chromosome"].map(str) + "-" + df["vus_Start"].map(str) + "-" + df["vus_AlternateAlleleVCF"].map(str)
