@@ -1,5 +1,4 @@
 import pandas as pd
-import sys
 
 evidenceList = ["strong", "moderate"]
 classificationList = ["P/LP", "B/LB"]
@@ -10,11 +9,12 @@ for evidence in evidenceList:
 
 		clas = classificationList[i]
 		clas_v2 = classificationList_v2[i]
-
+		
 		df = pd.read_csv(f"/Users/vineel/Desktop/dbnsfp_{evidence}_{clas_v2}_analysis.csv")
 		df["cv_simple_name"] = df["cv_Chromosome"].map(str) + "-" + df["cv_Start"].map(str) + "-" + df["cv_AlternateAlleleVCF"].map(str)
 		df["db_simple_name"] = df["db_chr"].map(str) + "-" + df["db_pos"].map(str) + "-" + df["db_alt"].map(str)
-
+		
+		#SpliceAI data retrieved from VEP Web Interface
 		addCvDf = pd.read_csv(f"/Users/vineel/Documents/dbnsfp_sa_vep/dbnsfp_{evidence}_{clas_v2}_cv_output.txt", sep = "\t")
 		addDbDf = pd.read_csv(f"/Users/vineel/Documents/dbnsfp_sa_vep/dbnsfp_{evidence}_{clas_v2}_db_output.txt", sep = "\t")
 
