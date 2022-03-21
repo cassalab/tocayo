@@ -23,12 +23,14 @@ if __name__ == "__main__":
 		df = df[df["simple_name"].isin(nameDf["name"])].sort_values(by = ["simple_name"]).reset_index(drop = True)
 		df.drop(df.filter(regex="Unname"),axis=1, inplace=True)
 
-		ndDf = df.drop_duplicates(subset = ["aa_half_name"])
+		ndDf = df.drop_duplicates(subset = ["aa_half_name"]).reset_index(drop = True)
 
 		finalClasSepDf = pd.DataFrame(columns = df.columns)
 		finalVusSepDf = pd.DataFrame(columns = df.columns)
 
-		for y, uniq_entry in ndDf.iterrows():
+		for _, uniq_entry in ndDf.iterrows():
+			
+			all_entries = df[df["aa_half_name"] == uniq_entry["aa_half_name"]].reset_index(drop = True)
 
 			if len(all_entries[all_entries["simple_annot"] == "VUS"]) > 0 and len(all_entries[all_entries["simple_annot"] == clas]) > 0 and len(all_entries[all_entries["simple_annot"] == clas_otr]) == 0:
 
