@@ -4,11 +4,9 @@ import sys
 
 def get_pvs1(cvDf):
 
-	cvDfHC = cvDf[cvDf["lof_clas"] == "HC"]
+	cvDfPLP = cvDf[cvDf["simple_annot"] == "P/LP"]
 
-	cvDfPLP = cvDfHC[cvDfHC["simple_annot"] == "P/LP"]
-
-	if len(cvDfHC) > 0 and len(cvDfPLP)/len(cvDfHC) > 0.5:
+	if len(cvDf) > 0 and len(cvDfPLP)/len(cvDf) > 0.5:
 		return cvDf
 	else:
 		return pd.DataFrame()
