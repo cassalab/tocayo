@@ -16,9 +16,9 @@ def get_pvs1(cvDf):
 
 def main():
 
-	stopDf = pd.read_csv("/net/data/aasubs/clinvar_only/pvs1/stop_annotated_entries.csv")
+	stopDf = pd.read_csv("/net/data/aasubs/clinvar_only/pvs1/stop_entries.csv")
 	stopDf["id"] = "stop"
-	spliceDf = pd.read_csv("/net/data/aasubs/clinvar_only/pvs1/splice_annotated_entries.csv")
+	spliceDf = pd.read_csv("/net/data/aasubs/clinvar_only/pvs1/splice_entries.csv")
 	spliceDf["id"] = "splice"
 
 	df = pd.concat([stopDf, spliceDf], ignore_index = True).sort_values(by = ["simple_name"]).reset_index(drop = True)
