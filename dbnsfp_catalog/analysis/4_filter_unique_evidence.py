@@ -10,8 +10,8 @@ for evidence in evidenceList:
 	plpDf = plpDfOriginal[plpDfOriginal["cv_aa_half_name"].isin(blbDfOriginal["cv_aa_half_name"]) == False]
 	blbDf = blbDfOriginal[blbDfOriginal["cv_aa_half_name"].isin(plpDfOriginal["cv_aa_half_name"]) == False]
 
-	plpDf.drop(df.filter(regex="Unname"),axis=1, inplace=True)
-	blbDf.drop(df.filter(regex="Unname"),axis=1, inplace=True)
+	plpDf.drop(plpDf.filter(regex="Unname"),axis=1, inplace=True)
+	blbDf.drop(blbDf.filter(regex="Unname"),axis=1, inplace=True)
 	plpDf = plpDf.sort_values(by = ["cv_aa_sub_name"]).reset_index(drop = True)
 	blbDf = blbDf.sort_values(by = ["cv_aa_sub_name"]).reset_index(drop = True)
 
