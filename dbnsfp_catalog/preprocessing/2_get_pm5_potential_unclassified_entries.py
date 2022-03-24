@@ -97,6 +97,6 @@ if __name__ == "__main__":
 		cvDfFull = pd.concat([cvDfFull, dfs[0]], ignore_index = True)
 		dbDfFull = pd.concat([dbDfFull, dfs[1]], ignore_index = True)
 
-	cvDfFull.to_csv("/net/data/aasubs/dbnsfp_catalog/moderate_cv_potential_entries_2.csv")
-	dbDfFull.to_csv("/net/data/aasubs/dbnsfp_catalog/moderate_db_potential_entries_2.csv")
+	cvDfFull.to_csv("/net/data/aasubs/dbnsfp_catalog/moderate_cv_potential_entries.csv")
+	dbDfFull.to_csv("/net/data/aasubs/dbnsfp_catalog/moderate_db_potential_entries.csv")
 
