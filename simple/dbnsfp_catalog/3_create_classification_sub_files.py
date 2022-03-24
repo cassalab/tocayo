@@ -10,6 +10,8 @@ for evidence in evidenceList:
 
 		clas = classificationList[i]
 		clas_v2 = classificationList_v2[i]
+		
+		cvDf = pd.read_csv(f"/net/data/aasubs/dbnsfp_catalog/{evidence}_filtered_potential_entries_full.csv")
 
 		df = pd.read_csv(f"/net/data/aasubs/dbnsfp_catalog/filtered/{evidence}_filtered_potential_entries_full.csv")
 
