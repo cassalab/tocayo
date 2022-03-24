@@ -17,7 +17,7 @@ if __name__ == "__main__":
 		clas_v2 = classificationList_v2[i]
 		clas_v2_otr = classificationList_v2_otr[i]
 
-		nameDf = pd.read_csv("/net/data/aasubs/clinvar_only/dup_files/ps1_all_subs.csv")
+		nameDf = pd.read_csv("/net/data/aasubs/clinvar_only/dup_files/strong_all_dup_subs.csv")
 
 		df = pd.read_csv(f"/net/data/aasubs/clinvar_only/annotated/strong_annotated_dup_subs.csv")
 		df = df[df["simple_name"].isin(nameDf["name"])].sort_values(by = ["vus_aa_sub_name"]).reset_index(drop = True)
