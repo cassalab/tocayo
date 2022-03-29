@@ -15,4 +15,4 @@ ClinVar and dbNSFP files which can be inputted into this pipeline are accessible
 * https://figshare.com/s/daadeb328a109f1f5f65
 
 _Note:_ It is recommended to use the most recent variant_summary.txt file from ClinVar's Downloads/FTP site (https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/).
-Using updated dbNSFP files with changes to annotations is not necessary as only fundamental variant data from the databse is used within the pipeline.
+Using dbNSFP files with updated annotations is not necessary as only fundamental variant data from the databse is used within the pipeline.
