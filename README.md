@@ -4,7 +4,7 @@ The files above can be run sequentially to obtain lists of variants with PS1, PM
 
 A far simpler and smaller set of files to obtain similar lists of variants are available in /simple/. However, amino acid substitutions are not verified to be the same or in the same codon for PS1 and PM5 evidences, consequences are not checked for all evidence tiers, and unclassified variants from dbNSFP cannot be matched by transcript for PS1 and PM5 evidence. It is recommended to use this set of files when ease of running is a priority and when additional annotations are not needed, and it is recommended to use the main set of files when having the most accurate data with all annotations is a priority.
 
-_Note:_ When using the main set of files, Ensemble VEP is needed to retrieve annotations (with refseq option enabled and .txt output). CADD and LOFTEE plugins are used at various points, but these aspects are inessential and can be removed from respective files. Nothing additional outside of input files is needed to run the simple set of files.
+_Note:_ When using the main set of files, Ensemble VEP is needed to retrieve annotations (with refseq option enabled and .txt output). CADD and LOFTEE plugins are used at various points, but these aspects are inessential and can be removed from respective files. Nothing outside of input files is needed to run the simple set of files.
 
 ---
 Pre-computed lists of variants (VUS within ClinVar and unclassified variants exome-wide) with PS1, PM5, and PVS1 evidence are accessible through the following links [created using ClinVar v12/19/2021 and dbNSFP v4.2a]:
