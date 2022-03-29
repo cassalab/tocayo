@@ -11,4 +11,5 @@ Pre-computed lists of variants (VUS within ClinVar and unclassified variants exo
 
 ClinVar and dbNSFP files which can be inputted into this pipeline are accessible through the following link:
 * https://figshare.com/s/daadeb328a109f1f5f65
-_Note:_ It is recommended to use the most recent variant_summary.txt file from ClinVar's Downloads/FTP site (https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/). Using updated dbNSFP files with changes to annotations is not necessary as only fundamental variant data from the databse is used within the pipeline.
+_Note:_ It is recommended to use the most recent variant_summary.txt file from ClinVar's Downloads/FTP site (https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/).
+Using updated dbNSFP files with changes to annotations is not necessary as only fundamental variant data from the databse is used within the pipeline.
