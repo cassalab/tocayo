@@ -1,6 +1,6 @@
 # Tocayo
 
-## Usage
+### Usage
 
 The files above can be run sequentially to obtain lists of variants with PS1, PM5, and PVS1 evidence. Contents in /clinvar_only/ and /dbnsfp_catalog/ are for obtaining VUS variants within ClinVar and unclassified variants exome-wide with ACMG/AMP evidence, respectively. ClinVar variant summary .txt files should be run through the processor in /general/, then used to run subsequent files in /preprocessing/ and /analysis/ folders in this specific order. Replace all file paths with appropriate local file paths; outputs from one file are often used in subsequent files. Using a similar file path structure and similar file names are suggested.
 
@@ -9,7 +9,7 @@ A far simpler and smaller set of files to obtain similar lists of variants are a
 _Note:_ When using the main set of files, Ensemble VEP is needed to retrieve annotations (with refseq option enabled and .txt output). CADD and LOFTEE plugins are used at various points, but these aspects are inessential and can be removed from respective files. Nothing outside of input files is needed to run the simple set of files.
 
 ---
-## Downloads
+### Downloads
 
 Pre-computed lists of variants (VUS within ClinVar and unclassified variants exome-wide) with PS1, PM5, and PVS1 evidence are accessible through the following links [created using ClinVar v12/19/2021 and dbNSFP v4.2a]:
 * Excel Version - https://figshare.com/s/a8ed691e7985afdbb0a1
