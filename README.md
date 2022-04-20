@@ -22,6 +22,7 @@ _Note:_
 Using dbNSFP files with updated annotations is not necessary as only fundamental variant data from the databse is used within the pipeline.
 
 Unzip the dbNSFP .sqlite.gz input file before use.
+
 ```
 gunzip dbnsfp_subset.sqlite.gz
 ```
