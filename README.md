@@ -21,6 +21,7 @@ To run the pipeline on an updated version of ClinVar, the following files and to
 _Note:_
 _Using dbNSFP files with updated annotations is not necessary as only fundamental variant data is used within the pipeline._
 
+
 Unzip the dbNSFP .sqlite.gz input file before use.
 
 ```
