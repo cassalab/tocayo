@@ -1,6 +1,5 @@
 # Tocayo
 
----
 Tocayo is a pipeline for analyzing sequence variants which have evidence of pathogenicity according to the PS1, PM5, and PVS1 guidelines specified by the ACMG/AMP. Specifically, the pipeline is meant to analyze VUS in ClinVar and other unclassified nsSNVs.
 
 ---
