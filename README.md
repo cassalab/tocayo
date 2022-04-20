@@ -26,7 +26,6 @@ Unzip the dbNSFP .sqlite.gz input file before use.
 ```
 test
 ```
-
 ---
 ## Usage
 
