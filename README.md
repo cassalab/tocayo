@@ -19,7 +19,7 @@ To run the pipeline on an updated version of ClinVar, the following files and to
 * Ensembl VEP v105 downloaded locally with the CADD and LOFTEE plugins
 
 _Note:_
-Using dbNSFP files with updated annotations is not necessary as only fundamental variant data from the databse is used within the pipeline.
+_Using dbNSFP files with updated annotations is not necessary as only fundamental variant data from the databse is used within the pipeline._
 
 Unzip the dbNSFP .sqlite.gz input file before use.
 
