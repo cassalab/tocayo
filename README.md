@@ -2,6 +2,7 @@
 
 Tocayo is a pipeline for analyzing sequence variants which have evidence of pathogenicity according to the PS1, PM5, and PVS1 guidelines specified by the ACMG/AMP. Specifically, the pipeline is meant to analyze VUS in ClinVar and other unclassified nsSNVs.
 
+---
 ### Downloads (recommended)
 
 Pre-computed lists of variants (VUS within ClinVar and unclassified variants exome-wide) with PS1, PM5, and PVS1 evidence are accessible through the following links [created using ClinVar v12/19/2021 and dbNSFP v4.2a]:
@@ -10,6 +11,7 @@ Pre-computed lists of variants (VUS within ClinVar and unclassified variants exo
 
 All lists (Excel and CSV) are updated every 6 months with the latest version of the ClinVar variant summary TSV file. Usage of these lists is recommended for all purposes unless having the most current version of ClinVar is of great importance. 
 
+---
 ### Pipeline Requirements
 To run the pipeline on an updated version of ClinVar, the following files and tools are required:
 * ClinVar variant_summary.txt file, available at ClinVar's Downloads/FTP site (https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/)
