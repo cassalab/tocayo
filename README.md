@@ -2,7 +2,7 @@
 
 Tocayo is a pipeline for analyzing sequence variants which have evidence of pathogenicity according to the PS1, PM5, and PVS1 guidelines specified by the ACMG/AMP. Specifically, the pipeline is meant to analyze VUS in ClinVar and other unclassified nsSNVs.
 
----
+-
 ### Downloads (recommended)
 
 Pre-computed lists of variants (VUS within ClinVar and unclassified variants exome-wide) with PS1, PM5, and PVS1 evidence are accessible through the following links [created using ClinVar v12/19/2021 and dbNSFP v4.2a]:
@@ -11,7 +11,7 @@ Pre-computed lists of variants (VUS within ClinVar and unclassified variants exo
 
 All lists (Excel and CSV) are updated every 6 months with the latest version of the ClinVar variant summary TSV file. Usage of these lists is recommended for all purposes unless having the most current version of ClinVar is of great importance. 
 
----
+-
 ### Pipeline Requirements
 To run the pipeline on an updated version of ClinVar, the following files and tools are required:
 * ClinVar variant_summary.txt file, available at ClinVar's Downloads/FTP site (https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/)
@@ -21,7 +21,10 @@ To run the pipeline on an updated version of ClinVar, the following files and to
 _Note:_
 Using dbNSFP files with updated annotations is not necessary as only fundamental variant data from the databse is used within the pipeline.
 
----
+Unzip the dbNSFP .sqlite.gz input file before use.
+
+
+-
 ### Usage
 
 The files above can be run sequentially to obtain lists of variants with PS1, PM5, and PVS1 evidence. Contents in /clinvar_only/ and /dbnsfp_catalog/ are for obtaining VUS variants within ClinVar and unclassified variants exome-wide with ACMG/AMP evidence, respectively. ClinVar variant summary .txt files should be run through the processor in /general/, then used to run subsequent files in /preprocessing/ and /analysis/ folders in this specific order. Replace all file paths with appropriate local file paths; outputs from one file are often used in subsequent files. Using a similar file path structure and similar file names is suggested.
