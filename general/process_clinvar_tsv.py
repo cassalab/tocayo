@@ -74,7 +74,7 @@ def get_new_fields(df):
 	return df
 
 
-def parse_clinvar_df(fn = "/net/data/aasubs/variant_summary.txt"):
+def parse_clinvar_df(fn = "/net/data/aasubs/variant_summary_11-06-22.txt"):
 	df = pd.read_csv(fn, delimiter = "\t")
 	df = df.loc[
 		(~df["Start"].isna()) &
@@ -110,5 +110,4 @@ if __name__ == "__main__":
 	df["aa_half_name"] = df["gene_name"] + "-" + df["aa_half"]
 	df["Chromosome"] = df["Chromosome"].astype(str)
 	df.drop(df.filter(regex="Unname"), axis=1, inplace=True)
-	df.sort_values(by = ["aa_sub_name"]).reset_index(drop = True).to_csv("/net/data/aasubs/parsed_clinvar_12-19.csv")
-
+	df.sort_values(by = ["aa_sub_name"]).reset_index(drop = True).to_csv("/net/data/aasubs/parsed_clinvar_11-06-22.csv")
