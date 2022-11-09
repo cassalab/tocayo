@@ -1,6 +1,5 @@
 import os
 
-
 for i in range(47):
 	input_path = f"/net/data/aasubs/clinvar_only/vep/{i}_moderate_vep_input.txt"
 	output_path = f"/net/data/aasubs/clinvar_only/vep/{i}_moderate_vep_output.txt"
