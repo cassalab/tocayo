@@ -9,7 +9,7 @@ for i in range(47):
 	job_path = "/net/data/aasubs/clinvar_only/vep/j" + str(i) + "_vep.sh"
 	with open(job_path, "w") as f:
  		command = f"""
- 		vep --cache --dir /net/data/vep --assembly {assembly} --tab --no_stats -i {input_path} -o {output_path} --everything --refseq {plugin_command}
+ 		vep --cache --offline --dir /net/data/vep --assembly {assembly} --tab --no_stats -i {input_path} -o {output_path} --everything --refseq --use_given_ref {plugin_command}
  		"""
  		f.write(command)
 	f.close()
