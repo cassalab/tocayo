@@ -20,7 +20,7 @@ if __name__ == "__main__":
 		nameDf = pd.read_csv("/net/data/aasubs/clinvar_only/dup_files/ps1_all_subs.csv")
 
 		df = pd.read_csv(f"/net/data/aasubs/clinvar_only/annotated/strong_annotated_dup_subs.csv")
-		df = df[df["simple_name"].isin(nameDf["name"])].sort_values(by = ["vus_aa_sub_name"]).reset_index(drop = True)
+		df = df[df["simple_name"].isin(nameDf["name"])].sort_values(by = ["aa_sub_name"]).reset_index(drop = True)
 		df.drop(df.filter(regex="Unname"),axis=1, inplace=True)
 
 		ndDf = df.drop_duplicates(subset = ["aa_sub_name"]).reset_index(drop = True)
