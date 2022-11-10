@@ -58,5 +58,5 @@ if __name__ == "__main__":
 		finalSepDifDf = pd.concat([finalClasSepDf, finalVusSepDf], axis = 1)
 		finalSepDifDf = finalSepDifDf.sort_values(by = ["vus_aa_sub_name"]).reset_index(drop = True)
 
-		finalSepDifDf.to_csv(f"/net/data/aasubs/clinvar_only/results_new/strong_{clas_v2}_analysis.csv")
+		finalSepDifDf.to_csv(f"/net/data/aasubs/clinvar_only/results/strong_{clas_v2}_analysis.csv")
 
