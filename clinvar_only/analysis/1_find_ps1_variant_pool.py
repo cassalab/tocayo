@@ -3,14 +3,14 @@ import sys
 
 
 def indices(lst, element):
-    result = []
-    offset = -1
-    while True:
-        try:
-            offset = lst.index(element, offset+1)
-        except ValueError:
-            return result
-        result.append(offset)
+	result = []
+	offset = -1
+	while True:
+		try:
+			offset = lst.index(element, offset+1)
+		except ValueError:
+			return result
+		result.append(offset)
 
 
 if __name__ == "__main__":
@@ -104,4 +104,3 @@ if __name__ == "__main__":
 	nameDf["name"] = nameList
 	nameDf = nameDf.drop_duplicates(subset = ["name"]).sort_values(by = ["name"]).reset_index(drop = True)
 	nameDf.to_csv("/net/data/aasubs/clinvar_only/dup_files/ps1_all_subs.csv")
-
