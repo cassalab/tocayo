@@ -66,7 +66,7 @@ def main():
 		cvDf["consequence"] = vepFinalDf["Consequence"]
 		cvDf["impact"] = vepFinalDf["IMPACT"]
 		cvDf["1000_af"] = vepFinalDf["AF"]
-		cvDf["gnomad_af"] = vepFinalDf["gnomAD_AF"]
+		cvDf["gnomad_af"] = vepFinalDf["gnomADe_AF"]
 		cvDf["max_af"] = vepFinalDf["MAX_AF"]
 		cvDf["cadd_raw"] = vepFinalDf["CADD_RAW"]
 		cvDf["cadd_phred"] = vepFinalDf["CADD_PHRED"]
@@ -77,8 +77,6 @@ def main():
 		cvDf["vep_simple_name"] = vepFinalDf["simple_name"]
 		cvDf["vep_gene_name"] = vepFinalDf["SYMBOL"]
 		cvDf["vep_refseq"] = vepFinalDf["Feature"]
-		cvDf["given_ref"] = vepFinalDf["GIVEN_REF"]
-		cvDf["used_ref"] = vepFinalDf["USED_REF"]
 
 		cvDf.to_csv(f"/net/data/aasubs/clinvar_only/annotated/{evidence}_annotated_dup_subs.csv")
 
