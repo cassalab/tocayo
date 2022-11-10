@@ -14,7 +14,7 @@ def main():
 	for evidence in evidenceList:
 
 		if evidence == "strong":
-			vepDf = pd.read_csv("/net/data/aasubs/clinvar_only/dup_files/strong_vep_output.txt", sep = "\t", skiprows = 102, dtype = str)
+			vepDf = pd.read_csv("/net/data/aasubs/clinvar_only/dup_files/strong_vep_output.txt", sep = "\t", skiprows = 105, dtype = str)
 		else:
 			vepDf = pd.read_csv("/net/data/aasubs/clinvar_only/dup_files/moderate_vep_output.csv", dtype = str)
 
@@ -85,4 +85,3 @@ def main():
 
 if __name__ == '__main__':
 	main()
-
