@@ -52,7 +52,7 @@ headerText = [
 start = 0
 end = 1000
 
-for i in range(35):
+for i in range(45):
 	with open(f"/net/data/aasubs/clinvar_only/pvs1/{i}_stop_vep_input.txt", "a") as f:
 		
 		for text in headerText:
@@ -62,7 +62,7 @@ for i in range(35):
 		f.write("\t".join(headerList))
 		f.write("\n")
 
-		if i == 34:
+		if i == 44:
 			for j in range(start, len(df)):
 				f.write("\t".join(list(df.iloc[j])))
 				f.write("\n")
