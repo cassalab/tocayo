@@ -20,7 +20,7 @@ for i in range(26):
 		--tab --no_stats \
 		-i {input_path} \
 		-o {output_path} \
-		--everything --force_overwrite --refseq \
+		--everything --refseq --use_given_ref \
 		--plugin CADD,/net/data/CADD/v1.6/GRCh38/whole_genome_SNVs.tsv.gz \
 		--plugin LoF,loftee_path:/net/data/vep/loftee-grch38,human_ancestor_fa:/net/data/vep/loftee-grch38/human_ancestor.fa.gz,conservation_file:/net/data/vep/loftee-grch38/loftee.sql,gerp_bigwig:/net/data/vep/loftee-grch38/gerp_conservation_scores.homo_sapiens.GRCh38.bw \
 		--dir_plugins /net/data/vep/loftee-grch38
