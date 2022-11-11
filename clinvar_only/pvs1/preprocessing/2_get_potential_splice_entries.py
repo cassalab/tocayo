@@ -48,7 +48,7 @@ def annotate_star(status):
 
 if __name__ == '__main__':
 
-	df = pd.read_csv("/net/data/aasubs/variant_summary.txt", sep = "\t")
+	df = pd.read_csv("/net/data/aasubs/variant_summary_11-06-22.txt", sep = "\t")
 
 	df = df.loc[
 		(~df["Start"].isna()) &
