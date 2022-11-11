@@ -16,7 +16,6 @@ for i in range(26):
 		eval "$(/net/apps/x86_64/miniconda3/bin/conda shell.bash hook)"
 		vep --cache --offline --dir /net/data/vep \
 		--assembly GRCh38 \
-		--fasta /net/data/vep/homo_sapiens/105_GRCh38/Homo_sapiens.GRCh38.dna.toplevel.fa \
 		--tab --no_stats \
 		-i {input_path} \
 		-o {output_path} \
