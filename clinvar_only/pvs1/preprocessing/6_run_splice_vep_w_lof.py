@@ -1,12 +1,12 @@
 import os
 
-files_left = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18"]
 
-for x in files_left:
-	input_path = f"/net/data/aasubs/clinvar_only/pvs1/{x}_splice_vep_input.vcf"
-	output_path = f"/net/data/aasubs/clinvar_only/pvs1/{x}_splice_vep_output.vcf"
+for i in range(26):
+	
+	input_path = f"/net/data/aasubs/clinvar_only/pvs1/{i}_splice_vep_input.vcf"
+	output_path = f"/net/data/aasubs/clinvar_only/pvs1/{i}_splice_vep_output.vcf"
 
-	job_path = "/net/data/aasubs/clinvar_only/pvs1/j" + x + "_splice_vep_lof.sh"
+	job_path = "/net/data/aasubs/clinvar_only/pvs1/j" + str(i) + "_splice_vep_lof.sh"
 
 	with open(job_path, "w") as f:
 
