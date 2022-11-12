@@ -7,7 +7,7 @@ vepDfFull = pd.DataFrame()
 for i in range(26):
 
 	part_file_path = f"/net/data/aasubs/clinvar_only/pvs1/{i}_splice_vep_output.vcf"
-	vepDfPart = pd.read_csv(part_file_path, sep = "\t", skiprows = 105)
+	vepDfPart = pd.read_csv(part_file_path, sep = "\t", skiprows = 109)
 
 	if i == 0:
 
