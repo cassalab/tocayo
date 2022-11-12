@@ -57,20 +57,17 @@ def main():
 	cvDf["consequence"] = vepFinalDf["Consequence"]
 	cvDf["impact"] = vepFinalDf["IMPACT"]
 	cvDf["1000_af"] = vepFinalDf["AF"]
-	cvDf["gnomad_af"] = vepFinalDf["gnomAD_AF"]
+	cvDf["gnomad_af"] = vepFinalDf["gnomADe_AF"]
 	cvDf["max_af"] = vepFinalDf["MAX_AF"]
 	cvDf["cadd_raw"] = vepFinalDf["CADD_RAW"]
 	cvDf["cadd_phred"] = vepFinalDf["CADD_PHRED"]
 	cvDf["vep_simple_name"] = vepFinalDf["simple_name"]
 	cvDf["vep_gene_name"] = vepFinalDf["SYMBOL"]
 	cvDf["vep_refseq"] = vepFinalDf["Feature"]
-	cvDf["given_ref"] = vepFinalDf["GIVEN_REF"]
-	cvDf["used_ref"] = vepFinalDf["USED_REF"]
 	cvDf["lof_clas"] = vepFinalDf["LoF"]
 	cvDf["lof_filter"] = vepFinalDf["LoF_filter"]
 	cvDf["lof_flags"] = vepFinalDf["LoF_flags"]
 	cvDf["lof_info"] = vepFinalDf["LoF_info"]
-	cvDf["biotype"] = vepFinalDf["BIOTYPE"]
 
 	cvDf = cvDf[cvDf["consequence"].str.contains("stop_gained")].sort_values(by = ["simple_name"]).reset_index(drop = True)
 
