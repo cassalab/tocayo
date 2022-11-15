@@ -6,14 +6,14 @@ import sys
 
 
 def indices(lst, element):
-    result = []
-    offset = -1
-    while True:
-        try:
-            offset = lst.index(element, offset+1)
-        except ValueError:
-            return result
-        result.append(offset)
+	result = []
+	offset = -1
+	while True:
+		try:
+			offset = lst.index(element, offset+1)
+		except ValueError:
+			return result
+		result.append(offset)
 
 
 def get_variants(geneName):
@@ -52,9 +52,9 @@ def get_variants(geneName):
 if __name__ == "__main__":
 
 	global con
-	con = sqlite3.connect('/net/db/dbnsfp/dbnsfp.sqlite')
+	con = sqlite3.connect("/net/db/dbnsfp/dbnsfp.sqlite")
 
-	cvDf = pd.read_csv("/net/data/aasubs/parsed_clinvar_12-19.csv")
+	cvDf = pd.read_csv("/net/data/aasubs/parsed_clinvar_11-06-22.csv")
 
 	aaConv = {
 		"A": "Ala",
@@ -99,4 +99,3 @@ if __name__ == "__main__":
 
 	cvDfFull.to_csv("/net/data/aasubs/dbnsfp_catalog/moderate_cv_potential_entries.csv")
 	dbDfFull.to_csv("/net/data/aasubs/dbnsfp_catalog/moderate_db_potential_entries.csv")
-
