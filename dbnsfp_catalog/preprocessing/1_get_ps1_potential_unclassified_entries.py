@@ -34,8 +34,8 @@ def get_variants(geneName):
 
 	for i, db_entry in dbDf.iterrows():
 		for j, _ in enumerate(db_entry["Ensembl_transcriptid"].split(";")):
-			aa_sub_name = db_entry["genename"].split(";")[j] + "-" + aaConv.get(db_entry["aaref"]) + db_entry["aapos"].split(";")[j] + aaConv.get(db_entry["aaalt"])
 			simple_name = str(db_entry["simple_name"])
+			aa_sub_name = db_entry["genename"].split(";")[j] + "-" + aaConv.get(db_entry["aaref"]) + db_entry["aapos"].split(";")[j] + aaConv.get(db_entry["aaalt"])
 			if aa_sub_name in cvSubList and simple_name not in cvNameList:
 				for y in indices(cvSubList, aa_sub_name):
 					cvDfFinal = pd.concat([cvDfFinal, cvDf_gene.iloc[[y]]], ignore_index = True)
