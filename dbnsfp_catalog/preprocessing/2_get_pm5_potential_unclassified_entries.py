@@ -27,7 +27,6 @@ def get_variants(geneName):
 
 	cvDf_gene = cvDf[cvDf["gene_name"] == geneName]
 	cvNameList = list(cvDf_gene["simple_name"])
-	cvDf_gene = cvDf_gene[cvDf_gene["simple_annot"] != "VUS"]
 	cvHalfList = list(cvDf_gene["aa_half_name"])
 	cvSubList = list(cvDf_gene["aa_sub_name"])
 
