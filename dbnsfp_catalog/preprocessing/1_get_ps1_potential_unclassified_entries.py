@@ -26,8 +26,8 @@ def get_variants(geneName):
 	dbDf["simple_name"] = dbDf["chr"].map(str) + "-" + dbDf["pos"].map(str) + "-" + dbDf["ref"].map(str) + "-" + dbDf["alt"].map(str)
 
 	cvDf_gene = cvDf[cvDf["gene_name"] == geneName]
-	cvSubList = list(cvDf_gene["aa_sub_name"])
 	cvNameList = list(cvDf_gene["simple_name"])
+	cvSubList = list(cvDf_gene["aa_sub_name"])
 
 	cvDfFinal = pd.DataFrame(columns = cvDf_gene.columns)
 	dbDfFinal = pd.DataFrame(columns = dbColumns)
