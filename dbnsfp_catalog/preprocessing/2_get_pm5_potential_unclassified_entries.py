@@ -35,9 +35,9 @@ def get_variants(geneName):
 
 	for i, db_entry in dbDf.iterrows():
 		for j, _ in enumerate(db_entry["Ensembl_transcriptid"].split(";")):
+			simple_name = str(db_entry["simple_name"])
 			aa_half_name = db_entry["genename"].split(";")[j] + "-" + aaConv.get(db_entry["aaref"]) + db_entry["aapos"].split(";")[j]
 			aa_sub_name = str(db_entry["genename"]) + "-" + aaConv.get(db_entry["aaref"]) + str(db_entry["aapos"].split(";")[j]) + aaConv.get(db_entry["aaalt"])
-			simple_name = str(db_entry["simple_name"])
 			if aa_half_name in cvHalfList and simple_name not in cvNameList:
 				for y in indices(cvHalfList, aa_half_name):
 					if aa_sub_name != cvSubList[y]:
