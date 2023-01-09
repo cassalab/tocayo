@@ -23,7 +23,7 @@ def get_pvs1(cvDf):
 if __name__ == "__main__":
 
 	global con
-	con = sqlite3.connect('/net/db/dbnsfp/dbnsfp.sqlite')
+	con = sqlite3.connect("/net/db/dbnsfp/dbnsfp.sqlite")
 
 	aaConv = {
 		"A": "Ala",
