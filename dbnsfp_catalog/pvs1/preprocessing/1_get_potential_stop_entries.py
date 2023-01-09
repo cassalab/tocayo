@@ -54,7 +54,7 @@ if __name__ == "__main__":
 		"J": "Xle"
 	}
 
-	df = pd.read_csv("/net/data/aasubs/parsed_clinvar_12-19.csv")
+	df = pd.read_csv("/net/data/aasubs/parsed_clinvar_11-06-22.csv")
 
 	totalDf = pd.DataFrame(columns = ["chr", "HGVSc_ANNOVAR", "pos", "genename", "ref", "alt", "aapos", "aaref", "aaalt", "Ensembl_transcriptid", "codonpos", "cds_strand", "simple_name"])
 
