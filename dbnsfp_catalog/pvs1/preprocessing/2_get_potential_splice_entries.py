@@ -21,9 +21,9 @@ def get_pvs1(cvDf):
 if __name__ == "__main__":
 
 	global con
-	con = sqlite3.connect('/net/db/dbnsfp/dbnsfp.sqlite')
+	con = sqlite3.connect("/net/db/dbnsfp/dbnsfp.sqlite")
 
-	df = pd.read_csv("/net/data/aasubs/wsplice_clinvar_12-19.csv")
+	df = pd.read_csv("/net/data/aasubs/parsed_clinvar_11-06-22.csv")
 
 	noneDf = df.fillna("-200")[df.fillna("-200")["gene_name"] == "-200"]
 
