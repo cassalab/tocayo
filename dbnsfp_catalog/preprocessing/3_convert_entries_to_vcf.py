@@ -66,9 +66,9 @@ for evidence in evidence_list:
 
 		if evidence == "moderate":
 			start = 0
-			end = 70000
+			end = 40000
 
-			for i in range(36):
+			for i in range(88):
 				with open(f"/net/data/aasubs/dbnsfp_catalog/vep/{i}_{evidence}_{df_type}_vep_input.txt", "a") as f:
 					
 					for text in headerText:
@@ -78,7 +78,7 @@ for evidence in evidence_list:
 					f.write("\t".join(headerList))
 					f.write("\n")
 
-					if i == 35:
+					if i == 87:
 						for j in range(start, len(df)):
 							f.write("\t".join(list(df.iloc[j])))
 							f.write("\n")
@@ -89,8 +89,8 @@ for evidence in evidence_list:
 
 				f.close()
 
-				start += 70000
-				end += 70000
+				start += 40000
+				end += 40000
 
 				os.system(f"cp /net/data/aasubs/dbnsfp_catalog/vep/{i}_{evidence}_{df_type}_vep_input.txt /net/data/aasubs/dbnsfp_catalog/vep/{i}_{evidence}_{df_type}_vep_input.vcf")
 				os.system(f"rm /net/data/aasubs/dbnsfp_catalog/vep/{i}_{evidence}_{df_type}_vep_input.txt")
