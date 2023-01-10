@@ -52,7 +52,7 @@ headerText = [
 start = 0
 end = 15000
 
-for i in range(101):
+for i in range(98):
 	with open(f"/net/data/aasubs/dbnsfp_catalog/pvs1/{i}_dbn_splice_vep_input.txt", "a") as f:
 		
 		for text in headerText:
@@ -62,7 +62,7 @@ for i in range(101):
 		f.write("\t".join(headerList))
 		f.write("\n")
 
-		if i == 100:
+		if i == 97:
 			for j in range(start, len(df)):
 				f.write("\t".join(list(df.iloc[j])))
 				f.write("\n")
