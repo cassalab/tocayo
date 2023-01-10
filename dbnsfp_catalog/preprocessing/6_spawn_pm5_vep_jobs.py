@@ -20,7 +20,7 @@ for df_type in type_list:
 			--tab --no_stats \
 			-i {input_path} \
 			-o {output_path} \
-			--everything --force_overwrite --refseq \
+			--everything --force_overwrite --refseq --use_given_ref \
 			--plugin CADD,/net/data/CADD/v1.6/GRCh38/whole_genome_SNVs.tsv.gz \
 	 		"""
 
