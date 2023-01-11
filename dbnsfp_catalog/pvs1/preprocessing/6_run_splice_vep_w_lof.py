@@ -9,7 +9,7 @@ for x in files_left:
 	input_path = f"/net/data/aasubs/dbnsfp_catalog/pvs1/{x}_dbn_splice_vep_input.vcf"
 	output_path = f"/net/data/aasubs/dbnsfp_catalog/pvs1/{x}_dbn_splice_vep_output.vcf"
 
-	job_path = "/net/data/aasubs/dbnsfp_catalog/pvs1/j" + x + "_dbn_splice_vep_lof.sh"
+	job_path = "/net/data/aasubs/dbnsfp_catalog/vep/jobs/j" + x + "_dbn_splice_vep_lof.sh"
 
 	with open(job_path, "w") as f:
 
