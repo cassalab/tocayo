@@ -1,6 +1,5 @@
 import os
 
-
 for i in range(118):
 	input_path = f"/net/data/aasubs/dbnsfp_catalog/pvs1/{i}_dbn_stop_vep_input.vcf"
 	output_path = f"/net/data/aasubs/dbnsfp_catalog/pvs1/{i}_dbn_stop_vep_output.vcf"
