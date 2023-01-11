@@ -53,11 +53,11 @@ def main():
 		
 		vepFinalDf = combFilDf
 		vepDf = vepDf[vepDf["simple_name"].isin(vepFinalDf["simple_name"]) == False]
-		vepFinalDf = pd.concat([vepFinalDf, vepDf[(vepDf["CANONICAL"] == "YES") & ((vepDf["IMPACT"] == "MODERATE") | (vepDf["IMPACT"] == "HIGH")) & (vepDf["BIOTYPE"] == "protein_coding")].drop_duplicates(subset = ["simple_name"])], ignore_index = True).drop_duplicates(subset = ["simple_name"]).reset_index(drop = True)
+		vepFinalDf = pd.concat([vepFinalDf, vepDf[(vepDf["CANONICAL"] == "YES") & ((vepDf["IMPACT"] == "MODERATE") | (vepDf["IMPACT"] == "HIGH"))].drop_duplicates(subset = ["simple_name"])], ignore_index = True).drop_duplicates(subset = ["simple_name"]).reset_index(drop = True)
 		vepDf = vepDf[vepDf["simple_name"].isin(vepFinalDf["simple_name"]) == False]
-		vepFinalDf = pd.concat([vepFinalDf, vepDf[((vepDf["IMPACT"] == "MODERATE") | (vepDf["IMPACT"] == "HIGH")) & (vepDf["BIOTYPE"] == "protein_coding")].drop_duplicates(subset = ["simple_name"])], ignore_index = True).drop_duplicates(subset = ["simple_name"]).reset_index(drop = True)
+		vepFinalDf = pd.concat([vepFinalDf, vepDf[((vepDf["IMPACT"] == "MODERATE") | (vepDf["IMPACT"] == "HIGH"))].drop_duplicates(subset = ["simple_name"])], ignore_index = True).drop_duplicates(subset = ["simple_name"]).reset_index(drop = True)
 		vepDf = vepDf[vepDf["simple_name"].isin(vepFinalDf["simple_name"]) == False]
-		vepFinalDf = pd.concat([vepFinalDf, vepDf[(vepDf["IMPACT"] == "LOW") & (vepDf["BIOTYPE"] == "protein_coding")].drop_duplicates(subset = ["simple_name"])], ignore_index = True).drop_duplicates(subset = ["simple_name"]).reset_index(drop = True)
+		vepFinalDf = pd.concat([vepFinalDf, vepDf[(vepDf["IMPACT"] == "LOW")].drop_duplicates(subset = ["simple_name"])], ignore_index = True).drop_duplicates(subset = ["simple_name"]).reset_index(drop = True)
 		vepDf = vepDf[vepDf["simple_name"].isin(vepFinalDf["simple_name"]) == False]
 		vepFinalDf = pd.concat([vepFinalDf, vepDf.drop_duplicates(subset = ["simple_name"])], ignore_index = True).drop_duplicates(subset = ["simple_name"]).reset_index(drop = True)
 
