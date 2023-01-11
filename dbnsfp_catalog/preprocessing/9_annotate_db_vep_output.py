@@ -14,7 +14,7 @@ def main():
 	for evidence in evidenceList:
 
 		if evidence == "strong":
-			vepDf = pd.read_csv("/net/data/aasubs/dbnsfp_catalog/vep/strong_db_vep_output.vcf", sep = "\t", skiprows = 105, dtype = str)
+			vepDf = pd.read_csv("/net/data/aasubs/dbnsfp_catalog/vep/strong_db_vep_output.txt", sep = "\t", skiprows = 105, dtype = str)
 		else:
 			vepDf = pd.read_csv("/net/data/aasubs/dbnsfp_catalog/vep/moderate_db_vep_output.csv", dtype = str)
 
