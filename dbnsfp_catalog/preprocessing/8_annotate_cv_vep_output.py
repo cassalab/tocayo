@@ -14,7 +14,7 @@ def main():
 	for evidence in evidenceList:
 
 		if evidence == "strong":
-			vepDf = pd.read_csv("/net/data/aasubs/dbnsfp_catalog/vep/strong_cv_vep_output.vcf", sep = "\t", skiprows = 101, dtype = str)
+			vepDf = pd.read_csv("/net/data/aasubs/dbnsfp_catalog/vep/strong_cv_vep_output.txt", sep = "\t", skiprows = 105, dtype = str)
 		else:
 			vepDf = pd.read_csv("/net/data/aasubs/dbnsfp_catalog/vep/moderate_cv_vep_output.csv", dtype = str)
 
@@ -84,8 +84,6 @@ def main():
 		cvDf["vep_simple_name"] = vepFinalDf["simple_name"]
 		cvDf["vep_gene_name"] = vepFinalDf["SYMBOL"]
 		cvDf["vep_refseq"] = vepFinalDf["Feature"]
-		cvDf["given_ref"] = vepFinalDf["GIVEN_REF"]
-		cvDf["used_ref"] = vepFinalDf["USED_REF"]
 
 		cvDf = cvDf.set_index(cvDfCI.index)
 		cvDf = cvDf.reindex(cvDfND.index, method = "ffill").sort_values(by = ["aa_sub_name"]).reset_index(drop = True)
@@ -93,6 +91,5 @@ def main():
 		cvDf.to_csv(f"/net/data/aasubs/dbnsfp_catalog/annotated/{evidence}_annotated_cv_potential_entries.csv")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	main()
-
