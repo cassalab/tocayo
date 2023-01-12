@@ -14,17 +14,17 @@ def main():
 	for evidence in evidenceList:
 
 		if evidence == "strong":
-			vepDf = pd.read_csv("/net/data/aasubs/dbnsfp_catalog/vep/strong_db_vep_output.txt", sep = "\t", skiprows = 105, dtype = str)
+			vepDf = pd.read_csv("/net/data/aasubs/update_11-06-22/dbnsfp_catalog/vep/strong_db_vep_output.txt", sep = "\t", skiprows = 105, dtype = str)
 		else:
-			vepDf = pd.read_csv("/net/data/aasubs/dbnsfp_catalog/vep/moderate_db_vep_output.csv", dtype = str)
+			vepDf = pd.read_csv("/net/data/aasubs/update_11-06-22/dbnsfp_catalog/vep/moderate_db_vep_output.csv", dtype = str)
 
 		vepDf["simple_name"] = vepDf["#Uploaded_variation"].str.replace("_", "-")
 		vepDf["simple_name"] = vepDf["simple_name"].str.replace("/", "-")
 		vepDf = vepDf.sort_values(by = ["simple_name"]).reset_index(drop = True)
 		vepDf.drop(vepDf.filter(regex="Unname"), axis=1, inplace=True)
 
-		dbDf = pd.read_csv(f"/net/data/aasubs/dbnsfp_catalog/{evidence}_db_potential_entries.csv")
-		cvDf = pd.read_csv(f"/net/data/aasubs/dbnsfp_catalog/{evidence}_cv_potential_entries.csv")
+		dbDf = pd.read_csv(f"/net/data/aasubs/update_11-06-22/dbnsfp_catalog/{evidence}_db_potential_entries.csv")
+		cvDf = pd.read_csv(f"/net/data/aasubs/update_11-06-22/dbnsfp_catalog/{evidence}_cv_potential_entries.csv")
 		dbDf["refseq"] = cvDf["refseq"]
 		dbDf["aa_sub_name"] = cvDf["aa_sub_name"]
 
@@ -58,11 +58,11 @@ def main():
 
 		vepFinalDf = combFilDf
 		vepDf = vepDf[vepDf["simple_name"].isin(vepFinalDf["simple_name"]) == False]
-		vepFinalDf = pd.concat([vepFinalDf, vepDf[(vepDf["CANONICAL"] == "YES") & ((vepDf["IMPACT"] == "MODERATE") | (vepDf["IMPACT"] == "HIGH"))].drop_duplicates(subset = ["simple_name"])], ignore_index = True).drop_duplicates(subset = ["simple_name"]).reset_index(drop = True)
+		vepFinalDf = pd.concat([vepFinalDf, vepDf[(vepDf["CANONICAL"] == "YES") & ((vepDf["IMPACT"] == "MODERATE") | (vepDf["IMPACT"] == "HIGH")) & (vepDf["BIOTYPE"] == "protein_coding")].drop_duplicates(subset = ["simple_name"])], ignore_index = True).drop_duplicates(subset = ["simple_name"]).reset_index(drop = True)
 		vepDf = vepDf[vepDf["simple_name"].isin(vepFinalDf["simple_name"]) == False]
-		vepFinalDf = pd.concat([vepFinalDf, vepDf[((vepDf["IMPACT"] == "MODERATE") | (vepDf["IMPACT"] == "HIGH"))].drop_duplicates(subset = ["simple_name"])], ignore_index = True).drop_duplicates(subset = ["simple_name"]).reset_index(drop = True)
+		vepFinalDf = pd.concat([vepFinalDf, vepDf[((vepDf["IMPACT"] == "MODERATE") | (vepDf["IMPACT"] == "HIGH")) & (vepDf["BIOTYPE"] == "protein_coding")].drop_duplicates(subset = ["simple_name"])], ignore_index = True).drop_duplicates(subset = ["simple_name"]).reset_index(drop = True)
 		vepDf = vepDf[vepDf["simple_name"].isin(vepFinalDf["simple_name"]) == False]
-		vepFinalDf = pd.concat([vepFinalDf, vepDf[(vepDf["IMPACT"] == "LOW")].drop_duplicates(subset = ["simple_name"])], ignore_index = True).drop_duplicates(subset = ["simple_name"]).reset_index(drop = True)
+		vepFinalDf = pd.concat([vepFinalDf, vepDf[(vepDf["IMPACT"] == "LOW") & (vepDf["BIOTYPE"] == "protein_coding")].drop_duplicates(subset = ["simple_name"])], ignore_index = True).drop_duplicates(subset = ["simple_name"]).reset_index(drop = True)
 		vepDf = vepDf[vepDf["simple_name"].isin(vepFinalDf["simple_name"]) == False]
 		vepFinalDf = pd.concat([vepFinalDf, vepDf.drop_duplicates(subset = ["simple_name"])], ignore_index = True).drop_duplicates(subset = ["simple_name"]).reset_index(drop = True)
 
@@ -94,7 +94,7 @@ def main():
 		dbDf = dbDf.set_index(dbDfCI.index)
 		dbDf = dbDf.reindex(dbDfND.index, method = "ffill").sort_values(by = ["aa_sub_name"]).reset_index(drop = True)
 
-		dbDf.to_csv(f"/net/data/aasubs/dbnsfp_catalog/annotated/{evidence}_annotated_db_potential_entries.csv")
+		dbDf.to_csv(f"/net/data/aasubs/update_11-06-22/dbnsfp_catalog/annotated/{evidence}_annotated_db_potential_entries.csv")
 
 
 if __name__ == "__main__":
