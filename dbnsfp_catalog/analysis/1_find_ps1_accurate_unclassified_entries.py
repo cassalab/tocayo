@@ -91,7 +91,7 @@ combDf = pd.concat([combDf_single, combDf_non_single], ignore_index = True).sort
 combDf.to_csv("/net/data/aasubs/dbnsfp_catalog/filtered/strong_filtered_potential_entries_both.csv")
 
 
-vepDf = pd.read_csv("/net/data/aasubs/dbnsfp_catalog/vep/strong_db_vep_output.vcf", sep = "\t", skiprows = 101, dtype = str)
+vepDf = pd.read_csv("/net/data/aasubs/update_11-06-22/dbnsfp_catalog/vep/strong_db_vep_output.txt", sep = "\t", skiprows = 105, dtype = str)
 vepDf["simple_name"] = vepDf["#Uploaded_variation"].str.replace("_", "-")
 vepDf["simple_name"] = vepDf["simple_name"].str.replace("/", "-")
 vepDf = vepDf[vepDf["simple_name"].isin(outDf["db_simple_name"])]
@@ -149,7 +149,8 @@ checkDfSave["db_protein_position"] = vepFinalDf["Protein_position"]
 checkDfSave["db_consequence"] = vepFinalDf["Consequence"]
 checkDfSave["db_impact"] = vepFinalDf["IMPACT"]
 checkDfSave["db_1000_af"] = vepFinalDf["AF"]
-checkDfSave["db_gnomad_af"] = vepFinalDf["gnomAD_AF"]
+checkDfSave["db_gnomade_af"] = vepFinalDf["gnomADe_AF"]
+checkDfSave["db_gnomadg_af"] = vepFinalDf["gnomADg_AF"]
 checkDfSave["db_max_af"] = vepFinalDf["MAX_AF"]
 checkDfSave["db_cadd_raw"] = vepFinalDf["CADD_RAW"]
 checkDfSave["db_cadd_phred"] = vepFinalDf["CADD_PHRED"]
@@ -160,8 +161,6 @@ checkDfSave["db_sift_clas"] = vepFinalDf["SIFT"].str.split("(").str.get(0)
 checkDfSave["db_vep_simple_name"] = vepFinalDf["simple_name"]
 checkDfSave["db_vep_gene_name"] = vepFinalDf["SYMBOL"]
 checkDfSave["db_vep_refseq"] = vepFinalDf["Feature"]
-checkDfSave["db_given_ref"] = vepFinalDf["GIVEN_REF"]
-checkDfSave["db_used_ref"] = vepFinalDf["USED_REF"]
 
 
 checkDfSave = checkDfSave[((checkDfSave["db_impact"] == "MODERATE") | (checkDfSave["db_impact"] == "HIGH")) & (checkDfSave["db_full_aa"] == checkDfSave["cv_full_aa"]) & (checkDfSave["db_protein_position"] == checkDfSave["cv_protein_position"])]
@@ -222,4 +221,3 @@ for i, entry in checkDfSave.iterrows():
 
 combDf = pd.concat([combDf, checkDfSave], ignore_index = True).sort_values(by = ["cv_aa_sub_name"]).reset_index(drop = True)
 combDf.to_csv("/net/data/aasubs/dbnsfp_catalog/filtered/strong_filtered_potential_entries_full.csv")
-
