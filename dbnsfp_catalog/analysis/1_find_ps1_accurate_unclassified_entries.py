@@ -91,7 +91,7 @@ combDf = pd.concat([combDf_single, combDf_non_single], ignore_index = True).sort
 combDf.to_csv("/net/data/aasubs/dbnsfp_catalog/filtered/strong_filtered_potential_entries_both.csv")
 
 
-vepDf = pd.read_csv("/net/data/aasubs/update_11-06-22/dbnsfp_catalog/vep/strong_db_vep_output.txt", sep = "\t", skiprows = 105, dtype = str)
+vepDf = pd.read_csv("/net/data/aasubs/dbnsfp_catalog/vep/strong_db_vep_output.txt", sep = "\t", skiprows = 105, dtype = str)
 vepDf["simple_name"] = vepDf["#Uploaded_variation"].str.replace("_", "-")
 vepDf["simple_name"] = vepDf["simple_name"].str.replace("/", "-")
 vepDf = vepDf[vepDf["simple_name"].isin(outDf["db_simple_name"])]
