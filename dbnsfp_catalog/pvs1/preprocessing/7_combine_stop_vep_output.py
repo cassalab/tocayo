@@ -1,19 +1,14 @@
 import pandas as pd
 
 
-file_starters = []
-
-for i in range(124):
-	file_starters.append(f"{i}")
-
 vepDfFull = pd.DataFrame()
 
 
-for x in file_starters:
-	part_file_path = f"/net/data/aasubs/dbnsfp_catalog/pvs1/{x}_dbn_stop_vep_output.vcf"
-	vepDfPart = pd.read_csv(part_file_path, sep = "\t", skiprows = 105)
+for i in range(118):
+	part_file_path = f"/net/data/aasubs/dbnsfp_catalog/pvs1/{i}_dbn_stop_vep_output.vcf"
+	vepDfPart = pd.read_csv(part_file_path, sep = "\t", skiprows = 109)
 
-	if x == "0":
+	if i == 0:
 		vepDfFull = pd.DataFrame(columns = vepDfPart.columns)
 
 	vepDfFull = pd.concat([vepDfFull, vepDfPart], ignore_index = True)
