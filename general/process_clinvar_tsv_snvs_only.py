@@ -110,4 +110,4 @@ if __name__ == "__main__":
 	df["aa_half_name"] = df["gene_name"] + "-" + df["aa_half"]
 	df["Chromosome"] = df["Chromosome"].astype(str)
 	df.drop(df.filter(regex="Unname"), axis=1, inplace=True)
-	df.sort_values(by = ["aa_sub_name"]).reset_index(drop = True).to_csv("/net/data/aasubs/parsed_clinvar_11-06-22.csv")
+	df.sort_values(by = ["aa_sub_name"]).reset_index(drop = True).to_csv("/net/data/aasubs/parsed_clinvar_11-06-22.csv", index = False)
