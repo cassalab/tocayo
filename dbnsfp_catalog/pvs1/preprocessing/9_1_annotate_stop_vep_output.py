@@ -59,6 +59,6 @@ def main():
 	dbDf.to_csv(f"/net/data/aasubs/dbnsfp_catalog/pvs1/dbnsfp_stop_annotated_entries.csv")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	main()
 
