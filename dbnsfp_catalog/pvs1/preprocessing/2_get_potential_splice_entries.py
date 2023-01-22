@@ -1,11 +1,9 @@
 import sqlite3 
 import pandas as pd
 import numpy as np
-import time
-import sys
 
 
-def get_pvs1(cvDf):
+def get_pvs1(cvDf, geneName):
 
 	query = f"""SELECT chr,HGVSc_ANNOVAR,pos,genename,ref,alt,aapos,aaref,aaalt,Ensembl_transcriptid,codonpos,cds_strand FROM features WHERE (genename = "{geneName}" COLLATE NOCASE OR genename LIKE "{geneName};%")"""
 
@@ -13,7 +11,9 @@ def get_pvs1(cvDf):
 
 	dbDf["simple_name"] = dbDf["chr"].map(str) + "-" + dbDf["pos"].map(str) + "-" + dbDf["ref"].map(str) + "-" + dbDf["alt"].map(str)
 
-	dbDf = dbDf[(dbDf["aapos"].str.contains("-1")) & (dbDf["simple_name"].isin(cvDf["simple_name"]) == False)]
+	dbDf = dbDf[(dbDf["aapos"].str.contains("-1")) & (dbDf["simple_name"].isin(cvDf["simple_name"]) == False)].reset_index(drop = True)
+
+	dbDf["used_genename"] = geneName
 
 	return dbDf
 
@@ -23,7 +23,7 @@ if __name__ == "__main__":
 	global con
 	con = sqlite3.connect("/net/db/dbnsfp/dbnsfp.sqlite")
 
-	df = pd.read_csv("/net/data/aasubs/parsed_clinvar_11-06-22.csv")
+	df = pd.read_csv("/net/data/aasubs/wsplice_clinvar_11-06-22.csv")
 
 	noneDf = df.fillna("-200")[df.fillna("-200")["gene_name"] == "-200"]
 
@@ -37,12 +37,11 @@ if __name__ == "__main__":
 
 	df = pd.concat([df, noneDf], ignore_index = True).sort_values(by = ["simple_name"]).reset_index(drop = True)
 
-	totalDf = pd.DataFrame(columns = ["chr", "HGVSc_ANNOVAR", "pos", "genename", "ref", "alt", "aapos", "aaref", "aaalt", "Ensembl_transcriptid", "codonpos", "cds_strand", "simple_name"])
+	totalDf = pd.DataFrame(columns = ["chr", "HGVSc_ANNOVAR", "pos", "genename", "ref", "alt", "aapos", "aaref", "aaalt", "Ensembl_transcriptid", "codonpos", "cds_strand", "simple_name", "used_genename"])
 
 	for geneName in list(df.drop_duplicates(subset = ["gene_name"])["gene_name"]):
-		totalDf = pd.concat([totalDf, get_pvs1(df[df["gene_name"] == geneName])], ignore_index = True)
+		totalDf = pd.concat([totalDf, get_pvs1(df[df["gene_name"] == geneName], geneName)], ignore_index = True)
 
 	totalDf.drop(totalDf.filter(regex="Unname"), axis=1, inplace=True)
 
-	totalDf.sort_values(by = ["simple_name"]).reset_index(drop = True).to_csv(f"/net/data/aasubs/dbnsfp_catalog/pvs1/dbnsfp_splice_entries.csv")
-
+	totalDf.sort_values(by = ["simple_name"]).reset_index(drop = True).to_csv(f"/net/data/aasubs/update_11-06-22/dbnsfp_catalog/pvs1/dbnsfp_splice_entries.csv")
