@@ -1,6 +1,6 @@
 import os
 
-for i in range(98):
+for i in range(102):
 	input_path = f"/net/data/aasubs/dbnsfp_catalog/pvs1/{i}_dbn_splice_vep_input.vcf"
 	output_path = f"/net/data/aasubs/dbnsfp_catalog/pvs1/{i}_dbn_splice_vep_output.vcf"
 
