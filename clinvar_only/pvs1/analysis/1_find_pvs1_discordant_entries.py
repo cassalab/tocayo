@@ -45,6 +45,5 @@ def main():
 	totalDf.to_csv(f"/net/data/aasubs/clinvar_only/pvs1/pvs1_discordances.csv")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	main()
-	
