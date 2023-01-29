@@ -33,8 +33,8 @@ for evidence in evidenceList:
 		addDbDf = addDbDf[(addDbDf["SpliceAI_pred_DS_AG"] != "-") | (addDbDf["SpliceAI_pred_DS_AL"] != "-") | (addDbDf["SpliceAI_pred_DS_DG"] != "-") | (addDbDf["SpliceAI_pred_DS_DL"] != "-")]
 		addDbDf = addDbDf.drop_duplicates(subset = ["simple_name"])
 
-		addCvDf["sa_score"] = addCvDf[["SpliceAI_pred_DS_AG", "SpliceAI_pred_DS_AL", "SpliceAI_pred_DS_DG", "SpliceAI_pred_DS_DL"]].astype(float).max(axis=1)
-		addDbDf["sa_score"] = addDbDf[["SpliceAI_pred_DS_AG", "SpliceAI_pred_DS_AL", "SpliceAI_pred_DS_DG", "SpliceAI_pred_DS_DL"]].astype(float).max(axis=1)
+		addCvDf["sa_score"] = addCvDf[["SpliceAI_pred_DS_AG", "SpliceAI_pred_DS_AL", "SpliceAI_pred_DS_DG", "SpliceAI_pred_DS_DL"]].astype(float).max(axis = 1)
+		addDbDf["sa_score"] = addDbDf[["SpliceAI_pred_DS_AG", "SpliceAI_pred_DS_AL", "SpliceAI_pred_DS_DG", "SpliceAI_pred_DS_DL"]].astype(float).max(axis = 1)
 
 		df = df[(df["cv_simple_name"].isin(addCvDf["simple_name"])) & (df["db_simple_name"].isin(addDbDf["simple_name"]))]
 
@@ -57,8 +57,8 @@ for evidence in evidenceList:
 
 		df["cv_simple_name"] = df["cv_Chromosome"].map(str) + "-" + df["cv_Start"].map(str) + "-" + df["cv_ReferenceAlleleVCF"].map(str) + "-" + df["cv_AlternateAlleleVCF"].map(str)
 		df["db_simple_name"] = df["db_chr"].map(str) + "-" + df["db_pos"].map(str) + "-" + df["db_ref"].map(str) + "-" + df["db_alt"].map(str)
-    
-    		df.drop(df.filter(regex="Unname"),axis=1, inplace=True)
+		
+		df.drop(df.filter(regex="Unname"),axis=1, inplace=True)
 		df = df.sort_values(by = ["cv_aa_sub_name"]).reset_index(drop = True)
 		df.to_csv(f"/Users/vineel/Documents/splicing/dbnsfp/dbnsfp_{evidence}_{clas_v2}_data")
 
