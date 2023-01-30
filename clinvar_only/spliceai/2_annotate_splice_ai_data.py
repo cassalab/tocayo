@@ -54,5 +54,5 @@ for evidence in evidenceList:
 		df["vus_sa_score"] = addVusDf["sa_score"]
 
 		df = df.sort_values(by = ["vus_aa_sub_name"]).reset_index(drop = True)
-		df.to_csv(f"/Users/vineel/Documents/splicing/clinvar/{evidence}_{clas_v2}_spliceai.csv")
+		df.to_csv(f"/Users/vineel/Documents/splicing/clinvar/{evidence}_{clas_v2}_spliceai.csv", index = False)
 
