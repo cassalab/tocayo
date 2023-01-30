@@ -46,14 +46,12 @@ for evidence in evidenceList:
 		addCvDf = addCvDf.set_index(cvCI.index)
 		addCvDf = addCvDf.reindex(df.index, method = "ffill").sort_values(by = ["simple_name"]).reset_index(drop = True)
 		df["cv_sa_score"] = addCvDf["sa_score"]
-		df["cv_sa_gene"] = addCvDf["SpliceAI_pred_SYMBOL"]
 
 		df = df.sort_values(by = ["db_simple_name"]).reset_index(drop = True)
 		dbCI = df.drop_duplicates(subset = ["db_simple_name"])
 		addDbDf = addDbDf.set_index(dbCI.index)
 		addDbDf = addDbDf.reindex(df.index, method = "ffill").sort_values(by = ["simple_name"]).reset_index(drop = True)
 		df["db_sa_score"] = addDbDf["sa_score"]
-		df["db_sa_gene"] = addDbDf["SpliceAI_pred_SYMBOL"]
 
 		df["cv_simple_name"] = df["cv_Chromosome"].map(str) + "-" + df["cv_Start"].map(str) + "-" + df["cv_ReferenceAlleleVCF"].map(str) + "-" + df["cv_AlternateAlleleVCF"].map(str)
 		df["db_simple_name"] = df["db_chr"].map(str) + "-" + df["db_pos"].map(str) + "-" + df["db_ref"].map(str) + "-" + df["db_alt"].map(str)
