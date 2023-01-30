@@ -33,8 +33,8 @@ for evidence in evidenceList:
 		addVusDf = addVusDf[(addVusDf["SpliceAI_pred_DS_AG"] != "-") | (addVusDf["SpliceAI_pred_DS_AL"] != "-") | (addVusDf["SpliceAI_pred_DS_DG"] != "-") | (addVusDf["SpliceAI_pred_DS_DL"] != "-")]
     		addVusDf = addVusDf.drop_duplicates(subset = ["simple_name"])
 
-		addClasDf["sa_score"] = addClasDf[["SpliceAI_pred_DS_AG", "SpliceAI_pred_DS_AL", "SpliceAI_pred_DS_DG", "SpliceAI_pred_DS_DL"]].astype(float).max(axis=1)
-		addVusDf["sa_score"] = addVusDf[["SpliceAI_pred_DS_AG", "SpliceAI_pred_DS_AL", "SpliceAI_pred_DS_DG", "SpliceAI_pred_DS_DL"]].astype(float).max(axis=1)
+		addClasDf["sa_score"] = addClasDf[["SpliceAI_pred_DS_AG", "SpliceAI_pred_DS_AL", "SpliceAI_pred_DS_DG", "SpliceAI_pred_DS_DL"]].astype(float).max(axis = 1)
+		addVusDf["sa_score"] = addVusDf[["SpliceAI_pred_DS_AG", "SpliceAI_pred_DS_AL", "SpliceAI_pred_DS_DG", "SpliceAI_pred_DS_DL"]].astype(float).max(axis = 1)
 
 		df = df[(df[f"{clas_v2}_simple_name"].isin(addClasDf["simple_name"])) & (df["vus_simple_name"].isin(addVusDf["simple_name"]))]
 
@@ -54,5 +54,5 @@ for evidence in evidenceList:
 		df["vus_sa_score"] = addVusDf["sa_score"]
 
 		df = df.sort_values(by = ["vus_aa_sub_name"]).reset_index(drop = True)
-		df.to_csv(f"/Users/vineel/Documents/splicing/clinvar/{evidence}_{clas_v2}_data")
+		df.to_csv(f"/Users/vineel/Documents/splicing/clinvar/{evidence}_{clas_v2}_spliceai.csv")
 
