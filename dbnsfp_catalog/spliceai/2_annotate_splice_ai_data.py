@@ -60,5 +60,5 @@ for evidence in evidenceList:
 		
 		df.drop(df.filter(regex="Unname"),axis=1, inplace=True)
 		df = df.sort_values(by = ["cv_aa_sub_name"]).reset_index(drop = True)
-		df.to_csv(f"/Users/vineel/Documents/splicing/dbnsfp/dbnsfp_{evidence}_{clas_v2}_data")
+		df.to_csv(f"/Users/vineel/Documents/splicing/dbnsfp/dbnsfp_{evidence}_{clas_v2}_spliceai.csv", index = False)
 
