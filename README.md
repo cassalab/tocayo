@@ -9,7 +9,7 @@ Pre-computed lists of variants (VUS within ClinVar and unclassified variants exo
 * Excel Version - https://figshare.com/s/a8ed691e7985afdbb0a1
 * CSV Version - https://figshare.com/s/b29d7d45d62bff0b3bc9
 
-All lists (Excel and CSV) are updated every 6 months with the latest version of the ClinVar variant summary TSV file. Usage of these lists is recommended for all purposes unless having the most current version of ClinVar is of great importance. 
+All lists (Excel and CSV) are updated annually with the latest version of the ClinVar variant summary TSV file. Usage of these lists is recommended for all purposes unless having the most current version of ClinVar is of great importance. 
 
 ---
 ## Pipeline Requirements
