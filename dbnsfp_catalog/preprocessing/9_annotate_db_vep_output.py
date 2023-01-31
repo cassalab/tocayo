@@ -93,6 +93,7 @@ def main():
 
 		dbDf = dbDf.set_index(dbDfCI.index)
 		dbDf = dbDf.reindex(dbDfND.index, method = "ffill").sort_values(by = ["aa_sub_name"]).reset_index(drop = True)
+		dbDf = dbDf.drop("aa_sub_name", axis = 1)
 
 		dbDf.to_csv(f"/net/data/aasubs/dbnsfp_catalog/annotated/{evidence}_annotated_db_potential_entries.csv")
 
