@@ -15,11 +15,11 @@ All lists (Excel and CSV) are updated annually with the latest version of the Cl
 ## Pipeline Requirements
 To run the pipeline on an updated version of ClinVar, the following files and tools are required:
 * ClinVar variant_summary.txt file, available at ClinVar's Downloads/FTP site (https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/)
-* dbNSFP .sqlite file with relavent annotations for all ~84M nsSNVs, available at https://figshare.com/s/daadeb328a109f1f5f65
+* dbNSFP .sqlite file with selected annotations for all ~84M nsSNVs, available at https://figshare.com/s/daadeb328a109f1f5f65
 * Ensembl VEP v108 downloaded locally with the CADD and LOFTEE plugins
 
 _Note:_
-_Using dbNSFP files with updated annotations is not necessary as only fundamental variant data is used within the pipeline._
+_Only fundamental variant data from dbNSFP is used within the pipeline._
 
 
 Unzip the dbNSFP .sqlite.gz input file before use.
