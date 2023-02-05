@@ -1,65 +1,82 @@
+
+
 import pandas as pd
-import numpy as np
+import natsort
+import sys
+import os
 
+df = pd.read_csv("/net/data/aasubs/dbnsfp_catalog/pvs1/dbnsfp_stop_entries.csv", usecols = ["chr", "pos", "simple_name", "ref", "alt"], dtype = str)
 
-pd.options.mode.chained_assignment = None
+df["qual"] = "."
+df["filter"] = "."
+df["info"] = "."
 
+df = df[["chr", "pos", "simple_name", "ref", "alt", "qual", "filter", "info"]]
 
-def main():
+index = natsort.index_natsorted(list(df["simple_name"]))
 
-	vepDf = pd.read_csv("/net/data/aasubs/update_11-06-22/dbnsfp_catalog/pvs1/dbnsfp_stop_vep_output.csv", dtype = str)
+for column in list(df.columns):
+	df[column] = natsort.order_by_index(list(df[column]), index)
 
-	vepDf["simple_name"] = vepDf["#Uploaded_variation"].str.replace("_", "-")
-	vepDf["simple_name"] = vepDf["simple_name"].str.replace("/", "-")
-	vepDf = vepDf.sort_values(by = ["simple_name"]).reset_index(drop = True)
-	vepDf.drop(vepDf.filter(regex="Unname"), axis=1, inplace=True)
+headerList = ["#CHROM", "POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO"]
 
-	dbDf = pd.read_csv("/net/data/aasubs/update_11-06-22/dbnsfp_catalog/pvs1/dbnsfp_stop_entries.csv")
-	dbDf = dbDf.sort_values(by = ["simple_name"]).reset_index(drop = True)
-	dbDf.drop(dbDf.filter(regex="Unname"), axis=1, inplace=True)
+headerText = [
+'##fileformat=VCFv4.2',
+'##FILTER=<ID=PASS,Description="All filters passed">',
+'##fileDate=20210817',
+'##reference=GRCh38/hg38',
+'##contig=<ID=1,length=248956422>',
+'##contig=<ID=2,length=242193529>',
+'##contig=<ID=3,length=198295559>',
+'##contig=<ID=4,length=190214555>',
+'##contig=<ID=5,length=181538259>',
+'##contig=<ID=6,length=170805979>',
+'##contig=<ID=7,length=159345973>',
+'##contig=<ID=8,length=145138636>',
+'##contig=<ID=9,length=138394717>',
+'##contig=<ID=10,length=133797422>',
+'##contig=<ID=11,length=135086622>',
+'##contig=<ID=12,length=133275309>',
+'##contig=<ID=13,length=114364328>',
+'##contig=<ID=14,length=107043718>',
+'##contig=<ID=15,length=101991189>',
+'##contig=<ID=16,length=90338345>',
+'##contig=<ID=17,length=83257441>',
+'##contig=<ID=18,length=80373285>',
+'##contig=<ID=19,length=58617616>',
+'##contig=<ID=20,length=64444167>',
+'##contig=<ID=21,length=46709983>',
+'##contig=<ID=22,length=50818468>',
+'##contig=<ID=X,length=156040895>',
+'##contig=<ID=Y,length=57227415>'
+]
 
-	vepDf = vepDf.merge(dbDf[["simple_name", "used_genename"]], how = "left", on = "simple_name")
-	vepDf = vepDf[vepDf["SYMBOL"] == vepDf["used_genename"]].reset_index(drop = True)
+start = 0
+end = 23000
 
-	vepFinalDf = vepDf[(vepDf["CANONICAL"] == "YES") & (vepDf["Consequence"].str.contains("stop_gained"))].drop_duplicates(subset = ["simple_name"]).reset_index(drop = True)
-	vepDf = vepDf[vepDf["simple_name"].isin(vepFinalDf["simple_name"]) == False]
-	vepFinalDf = pd.concat([vepFinalDf, vepDf[vepDf["Consequence"].str.contains("stop_gained")].drop_duplicates(subset = ["simple_name"])], ignore_index = True)
-	vepDf = vepDf[vepDf["simple_name"].isin(vepFinalDf["simple_name"]) == False]
-	vepFinalDf = pd.concat([vepFinalDf, vepDf.drop_duplicates(subset = ["simple_name"])], ignore_index = True)
+for i in range(118):
+	with open(f"/net/data/aasubs/dbnsfp_catalog/pvs1/{i}_dbn_stop_vep_input.txt", "a") as f:
+		
+		for text in headerText:
+			f.write(text)
+			f.write("\n")
 
-	vepFinalDf = vepFinalDf.sort_values(by = ["simple_name"]).reset_index(drop = True)
+		f.write("\t".join(headerList))
+		f.write("\n")
 
-	dbDf = dbDf.drop_duplicates(subset = ["simple_name"])
-	dbDf = dbDf[dbDf["simple_name"].isin(vepFinalDf["simple_name"])]
-	dbDf = dbDf.sort_values(by = ["simple_name"]).reset_index(drop = True)
+		if i == 117:
+			for j in range(start, len(df)):
+				f.write("\t".join(list(df.iloc[j])))
+				f.write("\n")
+		else:
+			for j in range(start, end):
+				f.write("\t".join(list(df.iloc[j])))
+				f.write("\n")
 
-	dbDf["strand"] = np.where(vepFinalDf["STRAND"] == "1", "+", "-")
-	dbDf["full_codons"] = vepFinalDf["Codons"].str.lower()
-	dbDf["half_codons"] = vepFinalDf["Codons"].str.split("/").str.get(0).str.lower()
-	dbDf["ref_codons"] = vepFinalDf["Codons"].str.split("/").str.get(0)
-	dbDf["full_aa"] = vepFinalDf["Amino_acids"]
-	dbDf["half_aa"] = vepFinalDf["Amino_acids"].str.split("/").str.get(0)
-	dbDf["protein_position"] = vepFinalDf["Protein_position"]
-	dbDf["consequence"] = vepFinalDf["Consequence"]
-	dbDf["impact"] = vepFinalDf["IMPACT"]
-	dbDf["1000_af"] = vepFinalDf["AF"]
-	dbDf["gnomade_af"] = vepFinalDf["gnomADe_AF"]
-	dbDf["gnomadg_af"] = vepFinalDf["gnomADg_AF"]
-	dbDf["max_af"] = vepFinalDf["MAX_AF"]
-	dbDf["cadd_raw"] = vepFinalDf["CADD_RAW"]
-	dbDf["cadd_phred"] = vepFinalDf["CADD_PHRED"]
-	dbDf["vep_simple_name"] = vepFinalDf["simple_name"]
-	dbDf["vep_gene_name"] = vepFinalDf["SYMBOL"]
-	dbDf["vep_refseq"] = vepFinalDf["Feature"]
-	dbDf["lof_clas"] = vepFinalDf["LoF"]
-	dbDf["lof_filter"] = vepFinalDf["LoF_filter"]
-	dbDf["lof_flags"] = vepFinalDf["LoF_flags"]
-	dbDf["lof_info"] = vepFinalDf["LoF_info"]
+	f.close()
 
-	dbDf = dbDf[dbDf["consequence"].str.contains("stop_gained")].sort_values(by = ["simple_name"]).reset_index(drop = True)
+	start += 23000
+	end += 23000
 
-	dbDf.to_csv(f"/net/data/aasubs/update_11-06-22/dbnsfp_catalog/pvs1/dbnsfp_stop_annotated_entries.csv")
-
-
-if __name__ == "__main__":
-	main()
+	os.system(f"cp /net/data/aasubs/dbnsfp_catalog/pvs1/{i}_dbn_stop_vep_input.txt /net/data/aasubs/dbnsfp_catalog/pvs1/{i}_dbn_stop_vep_input.vcf")
+	os.system(f"rm /net/data/aasubs/dbnsfp_catalog/pvs1/{i}_dbn_stop_vep_input.txt")
