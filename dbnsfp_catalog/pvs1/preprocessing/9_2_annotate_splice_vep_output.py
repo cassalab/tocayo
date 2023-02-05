@@ -7,14 +7,14 @@ pd.options.mode.chained_assignment = None
 
 def main():
 
-	vepDf = pd.read_csv("/net/data/aasubs/update_11-06-22/dbnsfp_catalog/pvs1/dbnsfp_splice_vep_output.csv", dtype = str)
+	vepDf = pd.read_csv("/net/data/aasubs/dbnsfp_catalog/pvs1/dbnsfp_splice_vep_output.csv", dtype = str)
 
 	vepDf["simple_name"] = vepDf["#Uploaded_variation"].str.replace("_", "-")
 	vepDf["simple_name"] = vepDf["simple_name"].str.replace("/", "-")
 	vepDf = vepDf.sort_values(by = ["simple_name"]).reset_index(drop = True)
 	vepDf.drop(vepDf.filter(regex="Unname"), axis=1, inplace=True)
 
-	dbDf = pd.read_csv(f"/net/data/aasubs/update_11-06-22/dbnsfp_catalog/pvs1/dbnsfp_splice_entries.csv")
+	dbDf = pd.read_csv(f"/net/data/aasubs/dbnsfp_catalog/pvs1/dbnsfp_splice_entries.csv")
 	dbDf = dbDf.sort_values(by = ["simple_name"]).reset_index(drop = True)
 	dbDf.drop(dbDf.filter(regex="Unname"), axis=1, inplace=True)
 
@@ -58,7 +58,7 @@ def main():
 
 	dbDf = dbDf[(dbDf["consequence"].str.contains("splice_acceptor_variant")) | (dbDf["consequence"].str.contains("splice_donor_variant"))].sort_values(by = ["simple_name"]).reset_index(drop = True)
 
-	dbDf.to_csv(f"/net/data/aasubs/update_11-06-22/dbnsfp_catalog/pvs1/dbnsfp_splice_annotated_entries.csv")
+	dbDf.to_csv(f"/net/data/aasubs/dbnsfp_catalog/pvs1/dbnsfp_splice_annotated_entries.csv")
 
 
 if __name__ == "__main__":
