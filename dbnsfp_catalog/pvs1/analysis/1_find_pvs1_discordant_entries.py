@@ -1,5 +1,4 @@
 import pandas as pd
-import sys
 
 
 geneList = []
@@ -55,11 +54,11 @@ def main():
 	totalDf = dbDf[dbDf["vep_gene_name"].isin(geneDf["gene_name"])]
 
 	totalDf.drop(totalDf.filter(regex="Unname"), axis=1, inplace=True)
-  totalDf = totalDf.sort_values(by = ["simple_name"]).reset_index(drop = True)
+	totalDf = totalDf.sort_values(by = ["simple_name"]).reset_index(drop = True)
 
 	totalDf.to_csv(f"/net/data/aasubs/dbnsfp_catalog/pvs1/dbnsfp_pvs1_discordances.csv")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	main()
 
